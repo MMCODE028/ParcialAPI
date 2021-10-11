@@ -9,7 +9,7 @@ from uuid import uuid4 as uuid  #Ramdoms ID'S for facturacion
 
 app = FastAPI()
 
-facturas = []  # base de datos de facturas
+facturas = [{"id":1, "total":20, "fecha":  2021-10-3,"cliente": "55203" }]  # base de datos de facturas
 
 # modelo del cliente
 class Cliente(BaseModel):
@@ -34,7 +34,7 @@ class Factura(BaseModel):
     total: float
     fecha: datetime = datetime.now()
     cliente: str
-    items: list
+    items: str
 
 
 @app.get('/')
