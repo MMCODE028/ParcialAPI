@@ -1,6 +1,6 @@
 packages = [{
     "id": 1,
-    "nombre": "Espada diamante",
-    "precio": 7000,
+    "nombre": "Nevera",
+    "precio": 7000000,
     "trayectoria": 1
 }]

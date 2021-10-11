@@ -6,10 +6,10 @@ from atrayectoriasdb import trace  #import de nuestra db de trayectoriaas
 from defaultpackages import packages  #import de nuestra base de datos de paquetes
 from uuid import uuid4 as uuid  #Ramdoms ID'S for facturacion
 
+
 app = FastAPI()
 
 facturas = []  # base de datos de facturas
-
 
 # modelo del cliente
 class Cliente(BaseModel):
@@ -39,7 +39,9 @@ class Factura(BaseModel):
 
 @app.get('/')
 def read_root():
-    return {"welcome": "welcome to my restapi"}
+    return {"Welcome": "Bienvenidos a envios API",
+           "Integrantes" : "Santiago Ospina, Jesus Angulo, Erick Romero, Carlos Mendoza"
+    }
 
 
 @app.get('/cliente')
