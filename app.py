@@ -6,10 +6,10 @@ from atrayectoriasdb import trace  #import de nuestra db de trayectoriaas
 from defaultpackages import packages  #import de nuestra base de datos de paquetes
 from uuid import uuid4 as uuid  #Ramdoms ID'S for facturacion
 
-
 app = FastAPI()
 
-facturas = [{"id":1, "total":20, "fecha":  2021-10-3,"cliente": "55203" }]  # base de datos de facturas
+facturas = []  # base de datos de facturas
+
 
 # modelo del cliente
 class Cliente(BaseModel):
@@ -33,15 +33,14 @@ class Factura(BaseModel):
     id: str
     total: float
     fecha: datetime = datetime.now()
-    cliente: str
-    items: str
+    cliente: dict
+    items: list
 
 
 @app.get('/')
 def read_root():
     return {"Welcome": "Bienvenidos a envios API",
-           "Integrantes" : "Santiago Ospina, Jesus Angulo, Erick Romero, Carlos Mendoza"
-    }
+           "Integrantes" : "Santiago Ospina, Jesus Angulo, Erick Romero, Carlos Mendoza"}
 
 
 @app.get('/cliente')
@@ -143,7 +142,7 @@ def save_facturas(client_id: int, pack_id: int, NewFactura: Factura):
     for cli in client:
         if client_id == cli["id"]:
             print(str(cli))
-            NewFactura.cliente = str(cli)
+            NewFactura.cliente = cli
         else:
             raise HTTPException(status_code=404, detail="client Not Found")
     for pack in packages:
